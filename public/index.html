@@ -1,0 +1,80 @@
+
+<html ng-app="myApp">
+	<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	 <!-- Optional theme -->
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+		<title>Weekly Status Update</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+		<script src= "controller/controller.js"></script>
+		
+		</head>
+	<body>
+		<div class ="container" ng-controller="AppCtrl">
+			<h1><font color="red">Weekly Status Update</font></h1>
+			<table class ="table">
+				<thread>
+					<tr>
+						<th>Owner</th>
+						<th>Create Date</th>
+						<th>End Date</th>
+						<th>Status</th>
+						<th>Remark</th>
+						<th>Task</th>
+						<th colspan='2'></th>
+					</tr>
+				</thread>
+					<tbody>
+						<tr>
+							<td>
+								<input class ="form-control" ng-model= "Contact.owner" type="text"  />
+							</td>
+							<td>
+								<input class ="form-control" ng-model= "Contact.createDate" type='date'>
+							</td>
+							<td>
+								<input class ="form-control" ng-model= "Contact.endDate" type='date'/>
+							</td>
+							<td style="width: 100px;">
+								<select ng-model="Contact.status" class="form-control">
+									<option value="Open">Open</option>
+									<option value="Close">Close</option>
+								</select>
+							</td>
+							<td>
+								<input class ="form-control" ng-model= "Contact.remark">
+							</td>
+							<td>
+								<input class ="form-control" ng-model= "Contact.task">
+							</td>
+							<td>
+								<button class = 'btn btn-primary' ng-show="toInsert" ng-click='addRecord()'>Add Record</button>
+								<button class = 'btn btn-primary' ng-show="toUpdate" ng-click="edit(Contact)">Update</button>
+							</td>
+							<td>
+								<button class = 'btn btn-primary' ng-show="toCancel" ng-click="cancel()">Cancel</button>
+							</td>
+						</tr>
+						<tr ng-repeat="Contact in contactlist">
+							<td>{{Contact.owner}}</td>
+							<td>{{Contact.createDate}}</td>
+							<td>{{Contact.endDate}}</td>
+							<td>{{Contact.status}}</td>
+							<td>{{Contact.remark}}</td>
+							<td>{{Contact.task}}</td>
+							<td>
+								<button class = 'btn btn-danger'  ng-click='remove(Contact._id)'>Remove</button>
+							</td>
+							<td>
+								<button class = 'btn btn-primary' ng-show="toEdit" ng-click='hide(Contact)'>Edit</button>
+							</td>
+						</tr>
+						
+					</tbody>
+			</table>
+		</div>
+		
+	</body>	
+</html>
